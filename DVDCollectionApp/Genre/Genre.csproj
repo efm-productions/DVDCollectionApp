@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B4D48439-5393-4301-8A84-2CAB2F3ABBF4}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Gnr</RootNamespace>
+    <AssemblyName>Winforms Views Template</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Dialogs\AddGenre.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\AddGenre.Designer.cs">
+      <DependentUpon>AddGenre.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\EditGenre.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\EditGenre.Designer.cs">
+      <DependentUpon>EditGenre.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\IAddGenre.cs" />
+    <Compile Include="Dialogs\IDisplayGenres.cs" />
+    <Compile Include="Dialogs\IEditGenre.cs" />
+    <Compile Include="Models\AddGenreModel.cs" />
+    <Compile Include="Models\DisplayGenresModel.cs" />
+    <Compile Include="Models\EditGenreModel.cs" />
+    <Compile Include="Models\IAddGenreModel.cs" />
+    <Compile Include="Models\IDisplayGenresModel.cs" />
+    <Compile Include="Models\IEditGenreModel.cs" />
+    <Compile Include="Presenters\AddGenrePresenter.cs" />
+    <Compile Include="Presenters\DisplayGenresPresenter.cs" />
+    <Compile Include="Presenters\EditGenrePresenter.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Dialogs\DisplayGenres.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\DisplayGenres.Designer.cs">
+      <DependentUpon>DisplayGenres.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Dialogs\AddGenre.resx">
+      <DependentUpon>AddGenre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\EditGenre.resx">
+      <DependentUpon>EditGenre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Dialogs\DisplayGenres.resx">
+      <DependentUpon>DisplayGenres.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ApplicationModel\ApplicationModel.csproj">
+      <Project>{84203a32-892a-41a3-829c-5fb2889d3905}</Project>
+      <Name>ApplicationModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyDVDs\MyDVDs.csproj">
+      <Project>{6f40bcd2-d642-4c92-a00d-c0039d727924}</Project>
+      <Name>MyDVDs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyDVDMultiCols\MyDVDMultiCols.csproj">
+      <Project>{e422855b-eae4-48bf-b5ab-d1ce490a83cc}</Project>
+      <Name>MyDVDMultiCols</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyDVDsBLL\MyDVDsBLL.csproj">
+      <Project>{86fd08f9-f7c2-47b3-9443-9bd3f0044ace}</Project>
+      <Name>MyDVDsBLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyDVDsDAL\MyDVDsDAL.csproj">
+      <Project>{739c5135-c38e-4859-ba45-e6e307dfde59}</Project>
+      <Name>MyDVDsDAL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

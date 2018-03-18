@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ea1a5686a56f4a44ade6342a8ee1e732" Name="Diagram1">
+        <EntityTypeShape EntityType="MyDVDsModel.Case" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyDVDsModel.Content" Width="1.5" PointX="7.5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyDVDsModel.Disc" Width="1.5" PointX="5.25" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyDVDsModel.DVDIcon" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyDVDsModel.Genre" Width="1.5" PointX="5.25" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyDVDsModel.Rating" Width="1.5" PointX="5.25" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyDVDsModel.StorageBox" Width="1.5" PointX="0.75" PointY="5.875" IsExpanded="true" />
+        <AssociationConnector Association="MyDVDsModel.FK_CaseToDisc" ManuallyRouted="false" />
+        <AssociationConnector Association="MyDVDsModel.FK_DVDIconToCase" ManuallyRouted="false" />
+        <AssociationConnector Association="MyDVDsModel.FK_StorageBoxToCase" ManuallyRouted="false" />
+        <AssociationConnector Association="MyDVDsModel.FK_DiscToContents" ManuallyRouted="false" />
+        <AssociationConnector Association="MyDVDsModel.FK_DVDIconToContents" ManuallyRouted="false" />
+        <AssociationConnector Association="MyDVDsModel.FK_GenreContents" ManuallyRouted="false" />
+        <AssociationConnector Association="MyDVDsModel.FK_RatingToContents" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,524 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MyDVDsModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="MyDVDsModelStoreContainer">
+    <EntitySet Name="Cases" EntityType="MyDVDsModel.Store.Cases" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Contents" EntityType="MyDVDsModel.Store.Contents" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Discs" EntityType="MyDVDsModel.Store.Discs" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DVDIcons" EntityType="MyDVDsModel.Store.DVDIcons" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Genres" EntityType="MyDVDsModel.Store.Genres" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Ratings" EntityType="MyDVDsModel.Store.Ratings" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="StorageBoxes" EntityType="MyDVDsModel.Store.StorageBoxes" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_CaseToDisc" Association="MyDVDsModel.Store.FK_CaseToDisc">
+      <End Role="Cases" EntitySet="Cases" />
+      <End Role="Discs" EntitySet="Discs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DVDIconToCase" Association="MyDVDsModel.Store.FK_DVDIconToCase">
+      <End Role="DVDIcons" EntitySet="DVDIcons" />
+      <End Role="Cases" EntitySet="Cases" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StorageBoxToCase" Association="MyDVDsModel.Store.FK_StorageBoxToCase">
+      <End Role="StorageBoxes" EntitySet="StorageBoxes" />
+      <End Role="Cases" EntitySet="Cases" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DiscToContents" Association="MyDVDsModel.Store.FK_DiscToContents">
+      <End Role="Discs" EntitySet="Discs" />
+      <End Role="Contents" EntitySet="Contents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DVDIconToContents" Association="MyDVDsModel.Store.FK_DVDIconToContents">
+      <End Role="DVDIcons" EntitySet="DVDIcons" />
+      <End Role="Contents" EntitySet="Contents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GenreContents" Association="MyDVDsModel.Store.FK_GenreContents">
+      <End Role="Genres" EntitySet="Genres" />
+      <End Role="Contents" EntitySet="Contents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RatingToContents" Association="MyDVDsModel.Store.FK_RatingToContents">
+      <End Role="Ratings" EntitySet="Ratings" />
+      <End Role="Contents" EntitySet="Contents" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Cases">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CaseNumber" Type="int" Nullable="false" />
+    <Property Name="CaseType" Type="nvarchar" Nullable="false" MaxLength="25" />
+    <Property Name="TotalDiscs" Type="int" Nullable="false" />
+    <Property Name="Notes" Type="nvarchar" Nullable="false" MaxLength="250" />
+    <Property Name="IsABoxset" Type="bit" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="250" />
+    <Property Name="StorageBoxId" Type="int" Nullable="false" />
+    <Property Name="DVDIconId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Contents">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ContentNumber" Type="int" Nullable="false" />
+    <Property Name="Notes" Type="nvarchar" Nullable="false" MaxLength="250" />
+    <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="250" />
+    <Property Name="Year" Type="nvarchar" Nullable="false" MaxLength="25" />
+    <Property Name="Cast" Type="nvarchar" Nullable="false" MaxLength="250" />
+    <Property Name="Director" Type="nvarchar" Nullable="false" MaxLength="250" />
+    <Property Name="DiscId" Type="int" Nullable="false" />
+    <Property Name="GenreId" Type="int" Nullable="false" />
+    <Property Name="RatingId" Type="int" Nullable="false" />
+    <Property Name="DVDIconId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Discs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DiscNumber" Type="int" Nullable="false" />
+    <Property Name="TotalContents" Type="int" Nullable="false" />
+    <Property Name="Notes" Type="nvarchar" Nullable="false" MaxLength="250" />
+    <Property Name="IsACollection" Type="bit" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="250" />
+    <Property Name="CaseId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DVDIcons">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="250" />
+    <Property Name="Icon" Type="varbinary(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Genres">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="Ratings">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MPAACode" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar" Nullable="false" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="StorageBoxes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BoxNumber" Type="int" Nullable="false" />
+    <Property Name="BoxType" Type="nvarchar" Nullable="false" MaxLength="25" />
+    <Property Name="TotalCases" Type="int" Nullable="false" />
+    <Property Name="Notes" Type="nvarchar" Nullable="false" MaxLength="250" />
+  </EntityType>
+  <Association Name="FK_CaseToDisc">
+    <End Role="Cases" Type="MyDVDsModel.Store.Cases" Multiplicity="1" />
+    <End Role="Discs" Type="MyDVDsModel.Store.Discs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cases">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Discs">
+        <PropertyRef Name="CaseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DVDIconToCase">
+    <End Role="DVDIcons" Type="MyDVDsModel.Store.DVDIcons" Multiplicity="1" />
+    <End Role="Cases" Type="MyDVDsModel.Store.Cases" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DVDIcons">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Cases">
+        <PropertyRef Name="DVDIconId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StorageBoxToCase">
+    <End Role="StorageBoxes" Type="MyDVDsModel.Store.StorageBoxes" Multiplicity="1" />
+    <End Role="Cases" Type="MyDVDsModel.Store.Cases" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StorageBoxes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Cases">
+        <PropertyRef Name="StorageBoxId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DiscToContents">
+    <End Role="Discs" Type="MyDVDsModel.Store.Discs" Multiplicity="1" />
+    <End Role="Contents" Type="MyDVDsModel.Store.Contents" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Discs">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Contents">
+        <PropertyRef Name="DiscId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DVDIconToContents">
+    <End Role="DVDIcons" Type="MyDVDsModel.Store.DVDIcons" Multiplicity="1" />
+    <End Role="Contents" Type="MyDVDsModel.Store.Contents" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DVDIcons">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Contents">
+        <PropertyRef Name="DVDIconId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GenreContents">
+    <End Role="Genres" Type="MyDVDsModel.Store.Genres" Multiplicity="1" />
+    <End Role="Contents" Type="MyDVDsModel.Store.Contents" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Genres">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Contents">
+        <PropertyRef Name="GenreId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RatingToContents">
+    <End Role="Ratings" Type="MyDVDsModel.Store.Ratings" Multiplicity="1" />
+    <End Role="Contents" Type="MyDVDsModel.Store.Contents" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ratings">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Contents">
+        <PropertyRef Name="RatingId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MyDVDsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Case">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CaseNumber" Type="Int32" Nullable="false" />
+          <Property Name="CaseType" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TotalDiscs" Type="Int32" Nullable="false" />
+          <Property Name="Notes" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsABoxset" Type="Boolean" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StorageBoxId" Type="Int32" Nullable="false" />
+          <Property Name="DVDIconId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Discs" Relationship="Self.FK_CaseToDisc" FromRole="Cases" ToRole="Discs" />
+          <NavigationProperty Name="DVDIcon" Relationship="Self.FK_DVDIconToCase" FromRole="Cases" ToRole="DVDIcons" />
+          <NavigationProperty Name="StorageBox" Relationship="Self.FK_StorageBoxToCase" FromRole="Cases" ToRole="StorageBoxes" />
+        </EntityType>
+        <EntityType Name="Content">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ContentNumber" Type="Int32" Nullable="false" />
+          <Property Name="Notes" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Year" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Cast" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Director" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DiscId" Type="Int32" Nullable="false" />
+          <Property Name="GenreId" Type="Int32" Nullable="false" />
+          <Property Name="RatingId" Type="Int32" Nullable="false" />
+          <Property Name="DVDIconId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Disc" Relationship="Self.FK_DiscToContents" FromRole="Contents" ToRole="Discs" />
+          <NavigationProperty Name="DVDIcon" Relationship="Self.FK_DVDIconToContents" FromRole="Contents" ToRole="DVDIcons" />
+          <NavigationProperty Name="Genre" Relationship="Self.FK_GenreContents" FromRole="Contents" ToRole="Genres" />
+          <NavigationProperty Name="Rating" Relationship="Self.FK_RatingToContents" FromRole="Contents" ToRole="Ratings" />
+        </EntityType>
+        <EntityType Name="Disc">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DiscNumber" Type="Int32" Nullable="false" />
+          <Property Name="TotalContents" Type="Int32" Nullable="false" />
+          <Property Name="Notes" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsACollection" Type="Boolean" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CaseId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Case" Relationship="Self.FK_CaseToDisc" FromRole="Discs" ToRole="Cases" />
+          <NavigationProperty Name="Contents" Relationship="Self.FK_DiscToContents" FromRole="Discs" ToRole="Contents" />
+        </EntityType>
+        <EntityType Name="DVDIcon">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Icon" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Genre">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Rating">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MPAACode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StorageBox">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BoxNumber" Type="Int32" Nullable="false" />
+          <Property Name="BoxType" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TotalCases" Type="Int32" Nullable="false" />
+          <Property Name="Notes" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Cases" Relationship="MyDVDsModel.FK_StorageBoxToCase" FromRole="StorageBoxes" ToRole="Cases" />
+        </EntityType>
+        <Association Name="FK_CaseToDisc">
+          <End Role="Cases" Type="Self.Case" Multiplicity="1" />
+          <End Role="Discs" Type="Self.Disc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cases">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Discs">
+              <PropertyRef Name="CaseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DVDIconToCase">
+          <End Role="DVDIcons" Type="Self.DVDIcon" Multiplicity="1" />
+          <End Role="Cases" Type="Self.Case" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DVDIcons">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cases">
+              <PropertyRef Name="DVDIconId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StorageBoxToCase">
+          <End Role="StorageBoxes" Type="Self.StorageBox" Multiplicity="1" />
+          <End Role="Cases" Type="Self.Case" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StorageBoxes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cases">
+              <PropertyRef Name="StorageBoxId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DiscToContents">
+          <End Role="Discs" Type="Self.Disc" Multiplicity="1" />
+          <End Role="Contents" Type="Self.Content" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Discs">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Contents">
+              <PropertyRef Name="DiscId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DVDIconToContents">
+          <End Role="DVDIcons" Type="Self.DVDIcon" Multiplicity="1" />
+          <End Role="Contents" Type="Self.Content" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DVDIcons">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Contents">
+              <PropertyRef Name="DVDIconId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GenreContents">
+          <End Role="Genres" Type="Self.Genre" Multiplicity="1" />
+          <End Role="Contents" Type="Self.Content" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genres">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Contents">
+              <PropertyRef Name="GenreId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RatingToContents">
+          <End Role="Ratings" Type="Self.Rating" Multiplicity="1" />
+          <End Role="Contents" Type="Self.Content" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ratings">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Contents">
+              <PropertyRef Name="RatingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MyDVDsContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cases" EntityType="Self.Case" />
+          <EntitySet Name="Contents" EntityType="Self.Content" />
+          <EntitySet Name="Discs" EntityType="Self.Disc" />
+          <EntitySet Name="DVDIcons" EntityType="Self.DVDIcon" />
+          <EntitySet Name="Genres" EntityType="Self.Genre" />
+          <EntitySet Name="Ratings" EntityType="Self.Rating" />
+          <EntitySet Name="StorageBoxes" EntityType="Self.StorageBox" />
+          <AssociationSet Name="FK_CaseToDisc" Association="Self.FK_CaseToDisc">
+            <End Role="Cases" EntitySet="Cases" />
+            <End Role="Discs" EntitySet="Discs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DVDIconToCase" Association="Self.FK_DVDIconToCase">
+            <End Role="DVDIcons" EntitySet="DVDIcons" />
+            <End Role="Cases" EntitySet="Cases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StorageBoxToCase" Association="Self.FK_StorageBoxToCase">
+            <End Role="StorageBoxes" EntitySet="StorageBoxes" />
+            <End Role="Cases" EntitySet="Cases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DiscToContents" Association="Self.FK_DiscToContents">
+            <End Role="Discs" EntitySet="Discs" />
+            <End Role="Contents" EntitySet="Contents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DVDIconToContents" Association="Self.FK_DVDIconToContents">
+            <End Role="DVDIcons" EntitySet="DVDIcons" />
+            <End Role="Contents" EntitySet="Contents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GenreContents" Association="Self.FK_GenreContents">
+            <End Role="Genres" EntitySet="Genres" />
+            <End Role="Contents" EntitySet="Contents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RatingToContents" Association="Self.FK_RatingToContents">
+            <End Role="Ratings" EntitySet="Ratings" />
+            <End Role="Contents" EntitySet="Contents" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MyDVDsModelStoreContainer" CdmEntityContainer="MyDVDsContext">
+    <EntitySetMapping Name="Cases">
+      <EntityTypeMapping TypeName="IsTypeOf(MyDVDsModel.Case)">
+        <MappingFragment StoreEntitySet="Cases">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CaseNumber" ColumnName="CaseNumber" />
+          <ScalarProperty Name="CaseType" ColumnName="CaseType" />
+          <ScalarProperty Name="TotalDiscs" ColumnName="TotalDiscs" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="IsABoxset" ColumnName="IsABoxset" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="StorageBoxId" ColumnName="StorageBoxId" />
+          <ScalarProperty Name="DVDIconId" ColumnName="DVDIconId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Contents">
+      <EntityTypeMapping TypeName="IsTypeOf(MyDVDsModel.Content)">
+        <MappingFragment StoreEntitySet="Contents">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ContentNumber" ColumnName="ContentNumber" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="Cast" ColumnName="Cast" />
+          <ScalarProperty Name="Director" ColumnName="Director" />
+          <ScalarProperty Name="DiscId" ColumnName="DiscId" />
+          <ScalarProperty Name="GenreId" ColumnName="GenreId" />
+          <ScalarProperty Name="RatingId" ColumnName="RatingId" />
+          <ScalarProperty Name="DVDIconId" ColumnName="DVDIconId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Discs">
+      <EntityTypeMapping TypeName="IsTypeOf(MyDVDsModel.Disc)">
+        <MappingFragment StoreEntitySet="Discs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DiscNumber" ColumnName="DiscNumber" />
+          <ScalarProperty Name="TotalContents" ColumnName="TotalContents" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="IsACollection" ColumnName="IsACollection" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="CaseId" ColumnName="CaseId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DVDIcons">
+      <EntityTypeMapping TypeName="IsTypeOf(MyDVDsModel.DVDIcon)">
+        <MappingFragment StoreEntitySet="DVDIcons">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Icon" ColumnName="Icon" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Genres">
+      <EntityTypeMapping TypeName="IsTypeOf(MyDVDsModel.Genre)">
+        <MappingFragment StoreEntitySet="Genres">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ratings">
+      <EntityTypeMapping TypeName="IsTypeOf(MyDVDsModel.Rating)">
+        <MappingFragment StoreEntitySet="Ratings">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="MPAACode" ColumnName="MPAACode" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StorageBoxes">
+      <EntityTypeMapping TypeName="IsTypeOf(MyDVDsModel.StorageBox)">
+        <MappingFragment StoreEntitySet="StorageBoxes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="BoxNumber" ColumnName="BoxNumber" />
+          <ScalarProperty Name="BoxType" ColumnName="BoxType" />
+          <ScalarProperty Name="TotalCases" ColumnName="TotalCases" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
